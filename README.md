@@ -1,16 +1,21 @@
 # Telemetry-BNG
-Telemetria no invasiva para NBG
+Telemetría no invasiva para NBG
 
+## Versión Gama
+Para versiones anteriores al ejecutable, este proyecto debe existir como una carpeta al mismo nivel que la carpeta VSL.
 
-## (Versión Gama) Para veciones antes del ejecutable
-Este proyecto debe existir como una carpeta al mismo nivel que la carpeta VSL
+## Instalación de Dependencias
+Se recomienda crear un ambiente virtual para instalar las dependencias.
 
-## Instalación de dependencias
-Se recomienda crear un ambiente virtual para instalar las dependencias. 
+Para instalar las dependencias, ejecute el siguiente comando:
 
-1. Para instalar las dependencias se puede ejecutar el siguiente comando:
-```pip install -r requirements.txt```
+    ```sh
+    pip install -r requirements.txt
+    ```
 
-## Archivo Main
-El archivo main se utiliza solo para probar manualmente las funciones. Se puede ejecutar con el siguiente comando:
-```py main.py path_to_monitoring```
+## Ejecución del Programa
+Se puede ejecutar con el siguiente comando, donde `path_to_monitoring` es la ruta que desea monitorizar:
+
+    ```sh
+    py main.py path_to_monitoring
+    ```
