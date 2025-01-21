@@ -1,6 +1,10 @@
 # Telemetry-BNG
 Telemetria no invasiva para NBG
 
+
+## (Versión Gama) Para veciones antes del ejecutable
+Este proyecto debe existir como una carpeta al mismo nivel que la carpeta VSL
+
 ## Instalación de dependencias
 Se recomienda crear un ambiente virtual para instalar las dependencias. 
 
