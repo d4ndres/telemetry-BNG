@@ -9,13 +9,13 @@ Se recomienda crear un ambiente virtual para instalar las dependencias.
 
 Para instalar las dependencias, ejecute el siguiente comando:
 
-    ```sh
-    pip install -r requirements.txt
-    ```
+```
+pip install -r requirements.txt
+```
 
 ## Ejecución del Programa
 Se puede ejecutar con el siguiente comando, donde `path_to_monitoring` es la ruta que desea monitorizar:
 
-    ```sh
-    py main.py path_to_monitoring
-    ```
+```
+py main.py path_to_monitoring
+```
