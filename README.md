@@ -14,8 +14,8 @@ pip install -r requirements.txt
 ```
 
 ## Ejecución del Programa
-Se puede ejecutar con el siguiente comando, donde `path_to_monitoring` es la ruta que desea monitorizar:
+Es necesario configurar el archivo .env y modificar el valor de la variable VSL_PATH pues será el path a monitorizar.
 
 ```
-py main.py path_to_monitoring
+py main.py
 ```

@@ -1,11 +1,17 @@
+import os
 from data_loader import load_data
 from plot_utils import plot_and_save, get_next_file_name
 from matplotlib.backends.backend_pdf import PdfPages
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env file
+
+BASE_PATH = os.getenv("VSL_PATH")
 
 FILE_PATHS = {
-    "general": "./VSL_Demo/General.csv",
-    "wheels": "./VSL_Demo/Wheels.csv",
-    "engine": "./VSL_Demo/Engine.csv"
+    "general": os.path.join(BASE_PATH, "General.csv"),
+    "wheels": os.path.join(BASE_PATH, "Wheels.csv"),
+    "engine": os.path.join(BASE_PATH, "Engine.csv")
 }
 
 def create_main_file():

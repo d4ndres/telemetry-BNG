@@ -5,13 +5,16 @@ import logging
 from watchdog.observers import Observer
 from event_handler import CustomEventHandler
 from utils import wait_for_directory
+from dotenv import load_dotenv
 
 def main():
+    load_dotenv()  # Load environment variables from .env file
+
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
 
-    path = sys.argv[1] if len(sys.argv) > 1 else "..\\VSL"
+    path = os.getenv("VSL_PATH")
     wait_for_directory(path)
 
     event_handler = CustomEventHandler()
