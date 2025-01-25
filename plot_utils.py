@@ -8,6 +8,7 @@ PLOT_CONFIG = {
 }
 
 def plot_and_save(pdf, data, x, y, title, xlabel=None, ylabel=None, labels=None, colors=None, markers=None):
+    fontsize = 16
     xlabel = xlabel if xlabel else x
     plt.figure(figsize=(12, 6))
     for i, y_col in enumerate(y):
@@ -16,8 +17,8 @@ def plot_and_save(pdf, data, x, y, title, xlabel=None, ylabel=None, labels=None,
                  color=colors[i] if colors else None, 
                  marker=markers[i] if markers else None)
     plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel if ylabel else f"f({xlabel})")
+    plt.xlabel(xlabel, fontsize=fontsize)
+    plt.ylabel(ylabel if ylabel else f"f({xlabel})", fontsize=fontsize)
     plt.legend()
     plt.grid(True)
     pdf.savefig()

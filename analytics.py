@@ -1,8 +1,10 @@
 import os
+import shutil
 from data_loader import load_data
 from plot_utils import plot_and_save, get_next_file_name
 from matplotlib.backends.backend_pdf import PdfPages
 from dotenv import load_dotenv
+from latex_utils import create_latex_document  # Import the new utility
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -54,6 +56,15 @@ def create_main_file():
             "markers": ["", "", ""]
         },
         {
+            "data": general_data,
+            "x": "vehicle x-position",
+            "y": ["vehicle y-position"],
+            "title": "Posición del Vehículo (X, Y)",
+            "labels": ["Posición X", "Posición Y"],
+            "markers": ["o"],
+            "colors": ["purple"]
+        },
+        {
             "data": wheels_data,
             "x": "time",
             "y": ["average angular velocity of all wheels"],
@@ -87,6 +98,17 @@ def create_main_file():
             plot_and_save(pdf, **plot)
 
     print(f"Archivo PDF generado: {file_path}")
+
+    # Copy the generated PDF to the "result" folder with a unique name
+    result_folder = "result"
+    if not os.path.exists(result_folder):
+        os.makedirs(result_folder)
+    result_file_path = os.path.join(result_folder, "vehicle_analysis_plot.pdf")
+    shutil.copy(file_path, result_file_path)
+    print(f"Archivo PDF copiado a: {result_file_path}")
+
+    # Create LaTeX document
+    create_latex_document(plots, result_file_path)
 
 if __name__ == "__main__":
     create_main_file()
