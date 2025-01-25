@@ -4,9 +4,11 @@ fonttools==4.55.4
 kiwisolver==1.4.8
 matplotlib==3.10.0
 numpy==2.2.2
+ordered-set==4.1.0
 packaging==24.2
 pandas==2.2.3
 pillow==11.1.0
+PyLaTeX==1.4.2
 pyparsing==3.2.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
