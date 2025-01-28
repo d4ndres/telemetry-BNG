@@ -3,10 +3,13 @@ from datetime import datetime
 from pylatex import Document, Section, Subsection, Command, Figure
 from pylatex.utils import NoEscape
 from dotenv import load_dotenv
+from asistanIA import analyze_plot 
 
 load_dotenv()  # Load environment variables from .env file
 
 def create_latex_document(plots, pdf_file_path):
+
+    
     nombre = os.getenv('NOMBRE')
     identificacion = os.getenv('IDENTIFICACION')
     empresa = os.getenv('EMPRESA')
@@ -37,11 +40,18 @@ def create_latex_document(plots, pdf_file_path):
         doc.append(f'Fecha de generación del reporte: {fecha}')
 
     for i, plot in enumerate(plots):
+        analysis = analyze_plot(plot['data'], plot['x'], plot['y'])
+        print(f"Análisis del gráfico {plot['title']} al {100*(i+1)/len(plots):.2f}%")
+
         with doc.create(Section(plot['title'])):
             with doc.create(Figure(position='H')) as plot_fig:
                 plot_fig.append(NoEscape(r'\centering'))
                 plot_fig.append(NoEscape(r'\includegraphics[width=1\textwidth,page=%d]{%s}' % (i+1, os.path.basename(pdf_file_path))))
                 plot_fig.add_caption(f'Gráfico de {plot["title"]}')
+            with doc.create(Subsection('Análisis de AsistanIA')):
+                doc.append('Este análisis ha sido generado automáticamente por AsistanIA.')
+                doc.append(NoEscape(r'\newline'))
+                doc.append(analysis)
 
     latex_file_path = os.path.join(os.path.dirname(pdf_file_path), "vehicle_analysis_report")
     doc.generate_tex(latex_file_path)
