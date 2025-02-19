@@ -8,6 +8,8 @@ from utils import wait_for_directory
 from dotenv import load_dotenv
 from gui import TelemetryGUI
 import tkinter as tk
+import subprocess
+import sys
 
 class TelemetryApp:
     def __init__(self):
@@ -28,15 +30,20 @@ class TelemetryApp:
         self.observer.schedule(event_handler, path, recursive=True)
         self.observer.start()
 
+    def static_analisys(self):
+        subprocess.run([sys.executable, "analytics_static.py"])
+
     def stop_monitoring(self):
         if self.observer:
             self.observer.stop()
             self.observer.join()
             self.observer = None
 
+
+    
+
 def main():
     app = TelemetryApp()
-    
     root = tk.Tk()
     gui = TelemetryGUI(root, app)
     root.mainloop()

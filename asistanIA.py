@@ -2,8 +2,8 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# Cargar las variables de entorno desde el archivo .env
-load_dotenv()
+# Cargar las variables de entorno desde el archivo .env_key
+load_dotenv(dotenv_path='.env_key')
 api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI(api_key=api_key)
 
@@ -15,21 +15,15 @@ def analyze_data_with_openai(value):
                 {
                     "role": "system", 
                     "content": """
-Eres un experto en análisis de datos del sector automovilismo y conducción. 
-Tu tarea es analizar el siguiente conjunto de datos los cuales representan una prueba de conducción 
-por lo que debes darle un retro alimentación al conductor si la necesita o si desarrolla 
-muy bien su tarea felicitarlo. 
-Reglas: 
-    - Siempre da respuestas en español. 
-    - Sé específico en tus explicaciones. 
-    - Usa un lenguaje claro y profesional. 
-    - Da respuesta inmediata de análisis. 
-    - No recapitules la información suministrada a menos que sea necesario. no ser redundante. 
-    - da desde el inicio valor a la respuesta
-    - solo puedes usar latex donde el contenido que regresas es parte ya de un subsection
-"""
+                    Ese un experto analítico de datos, puedes analisar los datos compartidos en formato JSON.
+                    Siempre vas a dar la respuesta directa, sin explicar de donde vienen los datos o que hiciste.
+                    puedes responder en un maximo de 500 caracteres.
+                    """
                 },
-                {"role": "user", "content": f"Analisa la siguiente data: {value}"}
+                {
+                    "role": "user", 
+                    "content": f"{value}"
+                }
         ]
     )
     return response.choices[0].message.content

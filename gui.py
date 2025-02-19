@@ -49,7 +49,9 @@ class TelemetryGUI:
         self.start_button = tk.Button(button_frame, text="Iniciar Monitorizado", command=self.start_monitoring)
         self.start_button.pack(side="left", fill="x", expand=True, padx=(0, 5))
         self.stop_button = tk.Button(button_frame, text="Detener Monitorizado", command=self.stop_monitoring)
-        self.stop_button.pack(side="right", fill="x", expand=True, padx=(5, 0))
+        self.stop_button.pack(side="left", fill="x", expand=True, padx=(5, 5))
+        self.analysis_button = tk.Button(button_frame, text="Análisis Estático", command=self.static_analysis)
+        self.analysis_button.pack(side="right", fill="x", expand=True, padx=(5, 0))
 
         # Indicador de estado
         self.status_label = tk.Label(root, text="Estado: Detenido")
@@ -68,6 +70,9 @@ class TelemetryGUI:
     def stop_monitoring(self):
         self.app.stop_monitoring()
         self.status_label.config(text="Estado: Detenido")
+
+    def static_analysis(self):
+        self.app.static_analisys()
 
     def update_env(self, event=None):
         set_key(".env", "NOMBRE", self.nombre_entry.get())

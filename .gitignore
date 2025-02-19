@@ -3,3 +3,7 @@ output/
 VSL/
 result/
 __pycache__/
+templates/user/
+output_pdf/
+VSL_Demo/
+.env_key

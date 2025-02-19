@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Engine Data Report</title>
+  <style>
+    @font-face {
+      font-family: 'Roboto';
+      src: url('./Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+    }
+
+    * {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #eaeaea;
+      color: #333;
+    }
+
+    p {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header style="
+      background-color: #292929;
+      color: white;
+      padding: 2em 1rem;
+      /* margin-bottom: 40px; */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+  ">
+    <h1 style="
+    text-transform: uppercase; 
+    letter-spacing: .3rem;
+    margin-bottom: .2rem;">Formula<span style="color: #B92121">Racings</span></h1>
+    <p style="margin: 0; font-size: 1.2rem;">Análisis del desempeño en la prueba de manejo</p>
+
+    <div style="
+      transform: rotate(20deg) translateX(40px) translateY(-100px);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 400px;
+      background: linear-gradient( to right, transparent, white);
+    ">
+      <img style="
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      mix-blend-mode: multiply;
+      " src="./bandera.png" alt="">
+    </div>
+  </header>
+
+  <section style="
+      /* page-break-after: always; */
+      display: flex;
+      flex-direction: column;
+      padding: 0 1rem;
+  ">
+    <div>
+      <h2 style="
+      color: #d82121;
+      border-bottom: 3px solid #d82121;
+      padding-bottom: .8rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.8em;
+      ">Datos de la sesión</h2>
+      <div style="display: flex; gap: 1rem;">
+        <div style="
+        width: 80%;
+        padding: 1rem;
+        background-color: white;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        font-size: 1rem;
+      ">
+          <p><strong>Nombre:</strong> {{nombre}}</p>
+          <p><strong>Identificación:</strong> {{identificacion}}</p>
+          <p><strong>Empresa:</strong> {{empresa}}</p>
+          <p><strong>Fecha de generación del reporte:</strong> {{fecha}}</p>
+        </div>
+        <div
+          style="width: 20%; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: .3rem;">
+          <div style="font-size: .8rem; text-align: center; font-weight: bold; text-transform: uppercase;">
+            sesión Numero
+          </div>
+          <div style="
+      width: 80px; 
+      height: 80px;
+      border: solid 4px #292929;
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3.5rem;
+          ">{{sesion}}</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div style="
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 1rem;
+    ">
+      <h2 style="
+      color: #d82121;
+      border-bottom: 3px solid #d82121;
+      padding-bottom: .8rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.8em;
+      ">Resumen de habilidades</h2>
+      <div>
+        <img style="
+            width: 100%;
+            object-fit: cover;
+          " src="./templates/habilidades_bar.png" alt="Chart Bar resumen de habilidades">
+      </div>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae aspernatur nesciunt maiores? Assumenda, expedita facilis voluptatibus nostrum obcaecati sunt odit facere deserunt neque? Architecto quis, quibusdam commodi porro distinctio, magni eligendi corrupti quam harum reprehenderit illum doloribus ad minima. Nulla aspernatur sapiente minus placeat id commodi delectus soluta pariatur quos nobis non voluptatum expedita sed vel perspiciatis eos perferendis consequuntur, fuga amet autem ad. Repellat voluptates magnam iusto esse rem aspernatur, dolor eligendi illum debitis accusantium quaerat, officiis amet, facere doloribus non veniam quo ad perferendis sequi. Debitis illo sunt minima ex possimus? Autem et ipsa ullam facere assumenda corporis?</p>
+
+    </div>
+  </section>
+
+  {% for plot in data %}
+  <section style="
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      padding: 0 1rem;
+  ">
+    <div style="
+      margin: .5rem 0 .2rem;
+      padding: 1rem;
+      background-color: white;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    ">
+      <h2 style="
+      color: #d82121;
+      border-bottom: 3px solid #d82121;
+      padding-bottom: .8rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.8em;
+      ">{{ plot.title }}</h2>
+      <div style="
+        display: flex;
+      ">
+        <img style="
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+      " src="{{ plot.image_path }}" alt="{{ plot.title }}">
+        <div style="
+        width: 100%;
+      ">
+          <p>{{ plot.description }}.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endfor %}
+
+  <!-- <footer>
+    <p>Generated by Engine Data Report System</p>
+  </footer> -->
+</body>
+
+</html>
